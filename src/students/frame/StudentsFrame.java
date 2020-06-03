@@ -52,6 +52,9 @@ public class StudentsFrame extends JFrame
         bot.add(left, BorderLayout.WEST);
         bot.add(right, BorderLayout.CENTER);
 
+        getContentPane().add(top, BorderLayout.NORTH);
+        getContentPane().add(bot, BorderLayout.CENTER);
+
         setBounds(100, 100, 600, 400);
     }
 
