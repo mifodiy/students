@@ -23,8 +23,8 @@ public class Student implements Comparable
         setFirstName(rs.getString(2));
         setPatronymic(rs.getString(3));
         setSurName(rs.getString(4));
-        setSex(rs.getString(5).charAt(0));
-        setDateOfBirth(rs.getDate(6));
+        setDateOfBirth(rs.getDate(5));
+        setSex(rs.getString(6).charAt(0));
         setGroupId(rs.getInt(7));
         setEducationYear(rs.getInt(8));
     }

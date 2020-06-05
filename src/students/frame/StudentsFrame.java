@@ -11,12 +11,12 @@ import java.util.Vector;
 
 public class StudentsFrame extends JFrame
 {
-    ManagementSystem ms = ManagementSystem.getInstance();
+    ManagementSystem ms = null;
     private JList grpList;
     private JList stdList;
     private JSpinner spYear;
 
-    public StudentsFrame(){
+    public StudentsFrame() throws Exception{
         getContentPane().setLayout(new BorderLayout());
 
         JPanel top = new JPanel();
@@ -35,7 +35,15 @@ public class StudentsFrame extends JFrame
         left.setLayout(new BorderLayout());
         left.setBorder(new BevelBorder(BevelBorder.RAISED));
 
-        Vector<Group> gr = new Vector<Group>(ms.getGroups());
+        Vector gr = null;
+        Vector st = null;
+
+        ms = ManagementSystem.getInstance();
+
+        gr = new Vector<Group>(ms.getGroups());
+
+        st = new Vector<Student>(ms.getAllStudents());
+
         left.add(new JLabel("Группы"), BorderLayout.NORTH);
         grpList = new JList(gr);
         left.add(new JScrollPane(grpList), BorderLayout.CENTER);
@@ -44,7 +52,6 @@ public class StudentsFrame extends JFrame
         right.setLayout(new BorderLayout());
         right.setBorder(new BevelBorder(BevelBorder.RAISED));
 
-        Vector<Student> st = new Vector<Student>(ms.getAllStudents());
         right.add(new JLabel("Студенты:"), BorderLayout.NORTH);
         stdList = new JList(st);
         right.add(new JScrollPane(stdList), BorderLayout.CENTER);
@@ -62,9 +69,14 @@ public class StudentsFrame extends JFrame
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                StudentsFrame sf = new StudentsFrame();
-                sf.setDefaultCloseOperation(EXIT_ON_CLOSE);
-                sf.setVisible(true);
+                StudentsFrame sf = null;
+                try {
+                    sf = new StudentsFrame();
+                    sf.setDefaultCloseOperation(EXIT_ON_CLOSE);
+                    sf.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

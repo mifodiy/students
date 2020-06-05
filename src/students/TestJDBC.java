@@ -27,7 +27,9 @@ public class TestJDBC
             stmt = con.createStatement();
             rs = stmt.executeQuery("SELECT * FROM students");
             while (rs.next()){
-                String str = rs.getString(1) + " : " + rs.getString(2);
+                String str = rs.getString(1) + " : " + rs.getString(2) + ":" + rs.getString(3)
+                        + ":" + rs.getString(4) + ":" + rs.getString(5) + ":"
+                        + ":" + rs.getString(7) + ":" + rs.getString(8);
                 printString(str);
             }
         } catch (Exception e) {
