@@ -222,14 +222,33 @@ public class StudentsFrame extends JFrame implements ActionListener, ListSelecti
                             }
                         }
                     }
-
                 }
         };
         t.start();
     }
 
     private void moveGroup() {
-        JOptionPane.showMessageDialog(this, "moveGroup");
+        Thread t = new Thread(){
+            public void run(){
+                if (grpList.getSelectedValue() == null) {
+                    return;
+                }
+                try{
+                    Group g = (Group) grpList.getSelectedValue();
+                    int y = ((SpinnerNumberModel)spYear.getModel()).getNumber().intValue();
+                    GroupDialog gd = new GroupDialog(y, ms.getGroups());
+                    gd.setModal(true);
+                    gd.setVisible(true);
+                    if (gd.getResult()) {
+                        ms.moveStudentsToGroup(g, y, gd.getGroup(), gd.getYear());
+                        reloadStudents();
+                    }
+                }catch (SQLException e){
+                    JOptionPane.showMessageDialog(StudentsFrame.this, e.getMessage());
+                }
+            }
+        };
+        t.start();
     }
 
     @Override
