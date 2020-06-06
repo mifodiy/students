@@ -79,7 +79,7 @@ public class ManagementSystem
         return students;
     }
 
-    private Collection<Student> getStudentsFromGroup(Group group, int year) throws SQLException {
+    public Collection<Student> getStudentsFromGroup(Group group, int year) throws SQLException {
         Collection<Student> students = new ArrayList<Student>();
 
         PreparedStatement stmt = null;
@@ -105,7 +105,7 @@ public class ManagementSystem
         return students;
     }
 
-    private void moveStudentsToGroup(Group oldGroup, int oldYear, Group newGroup, int newYear) throws SQLException{
+    public void moveStudentsToGroup(Group oldGroup, int oldYear, Group newGroup, int newYear) throws SQLException{
         PreparedStatement stmt = null;
 
         try {
@@ -124,7 +124,7 @@ public class ManagementSystem
 
     }
 
-    private void removeStudentsFromGroup(Group group, int year) throws SQLException {
+    public void removeStudentsFromGroup(Group group, int year) throws SQLException {
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement("DELETE FROM students WHERE group_id = ? AND educationYear = ?");
@@ -138,7 +138,7 @@ public class ManagementSystem
         }
     }
 
-    private void insertStudent(Student student) throws SQLException{
+    public void insertStudent(Student student) throws SQLException{
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement("insert into students (firstName, patronymic, surName, " +
@@ -158,7 +158,7 @@ public class ManagementSystem
         }
     }
 
-    private void updateStudent(Student student) throws SQLException{
+    public void updateStudent(Student student) throws SQLException{
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement("UPDATE students SET firstName = ?, patronymic = ?, surName = ?, " +
@@ -181,7 +181,7 @@ public class ManagementSystem
 
     }
 
-    private void deleteStudent(Student student) throws SQLException{
+    public void deleteStudent(Student student) throws SQLException{
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement("DELETE FROM students WHERE student_id = ?");
