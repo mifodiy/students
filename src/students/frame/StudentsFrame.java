@@ -38,6 +38,7 @@ public class StudentsFrame extends JFrame implements ActionListener, ListSelecti
         JMenu menu = new JMenu("Отчеты");
         JMenuItem menuItem = new JMenuItem("Все студенты");
         menuItem.setName(ALL_STUDENTS);
+        menuItem.addActionListener(this);
         menu.add(menuItem);
         menuBar.add(menu);
         setJMenuBar(menuBar);
@@ -49,6 +50,7 @@ public class StudentsFrame extends JFrame implements ActionListener, ListSelecti
 
         SpinnerModel sm = new SpinnerNumberModel(2006, 1990, 2100, 1);
         spYear = new JSpinner(sm);
+        spYear.addChangeListener(this);
         top.add(spYear);
 
         JPanel bot = new JPanel();
@@ -69,6 +71,7 @@ public class StudentsFrame extends JFrame implements ActionListener, ListSelecti
 
         left.add(new JLabel("Группы"), BorderLayout.NORTH);
         grpList = new JList(gr);
+        grpList.addListSelectionListener(this);
         grpList.setSelectedIndex(0);
         left.add(new JScrollPane(grpList), BorderLayout.CENTER);
 
@@ -76,6 +79,8 @@ public class StudentsFrame extends JFrame implements ActionListener, ListSelecti
         btnMvGr.setName(MOVE_GR);
         JButton btnClGr = new JButton("Очистить");
         btnClGr.setName(CLEAR_GR);
+        btnMvGr.addActionListener(this);
+        btnClGr.addActionListener(this);
 
         JPanel pnlBtnGr = new JPanel();
         pnlBtnGr.setLayout(new GridLayout(1,2));
@@ -93,10 +98,13 @@ public class StudentsFrame extends JFrame implements ActionListener, ListSelecti
 
         JButton btnAddSt = new JButton("Добавить");
         btnAddSt.setName(INSERT_ST);
+        btnAddSt.addActionListener(this);
         JButton btnUpdSt = new JButton("Исправить");
         btnUpdSt.setName(UPDATE_ST);
+        btnUpdSt.addActionListener(this);
         JButton btnDelSt = new JButton("Удалить");
         btnDelSt.setName(DELETE_ST);
+        btnDelSt.addActionListener(this);
 
         JPanel pnlBtnSt = new JPanel();
         pnlBtnSt.setLayout(new GridLayout(1,3));
@@ -110,8 +118,6 @@ public class StudentsFrame extends JFrame implements ActionListener, ListSelecti
 
         getContentPane().add(top, BorderLayout.NORTH);
         getContentPane().add(bot, BorderLayout.CENTER);
-
-        grpList.setSelectedIndex(0);
 
         setBounds(100, 100, 700, 500);
     }
