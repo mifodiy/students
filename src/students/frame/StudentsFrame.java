@@ -194,11 +194,49 @@ public class StudentsFrame extends JFrame implements ActionListener, ListSelecti
     }
 
     private void updateStudent() {
-        JOptionPane.showMessageDialog(this, "updateStudent");
+        Thread t = new Thread(){
+            public void run(){
+                if (stdList != null){
+                    StudentTableModel stm = (StudentTableModel) stdList.getModel();
+                    if (stdList.getSelectedRow() >= 0){
+                        Student s = stm.getStudent(stdList.getSelectedRow());
+                        try{
+                            StudentDialog std = new StudentDialog(ms.getGroups(), false, StudentsFrame.this);
+                            std.setStudent(s);
+                            std.setModal(true);
+                            std.setVisible(true);
+                            if (std.getResult()) {
+                                ms.updateStudent(std.getStudent());
+                                reloadStudents();
+                            }
+                        }catch (Exception e){
+                            JOptionPane.showMessageDialog(StudentsFrame.this, e.getMessage());
+                        }
+                    }
+                }
+
+            }
+        };
+        t.start();
     }
 
     private void insertStudent() {
-        JOptionPane.showMessageDialog(this, "insertStudent");
+        Thread t = new Thread(){
+            public void run(){
+                try{
+                    StudentDialog std = new StudentDialog(ms.getGroups(), true, StudentsFrame.this);
+                    std.setModal(true);
+                    std.setVisible(true);
+                    if (std.getResult()) {
+                        ms.insertStudent(std.getStudent());
+                        reloadStudents();
+                    }
+                }catch (Exception e){
+                    JOptionPane.showMessageDialog(StudentsFrame.this, e.getMessage());
+                }
+            }
+        };
+        t.start();
     }
 
     private void showAllStudents() {
@@ -263,7 +301,7 @@ public class StudentsFrame extends JFrame implements ActionListener, ListSelecti
         }
     }
 
-    private void reloadStudents() {
+    public void reloadStudents() {
         Thread t = new Thread(){
             public void run(){
                 if (stdList != null){
