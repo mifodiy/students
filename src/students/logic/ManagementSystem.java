@@ -63,7 +63,7 @@ public class ManagementSystem
         ResultSet rs = null;
         try {
             stmt = con.createStatement();
-            rs = stmt.executeQuery("select * from students order by surName, firstName, patronymic");
+            rs = stmt.executeQuery("select student_id, firstName, patronymic, surName, dateOfBirth, sex, group_id, educationYear from students order by surName, firstName, patronymic");
             while (rs.next()){
                 Student st = new Student(rs);
                 students.add(st);
@@ -85,7 +85,7 @@ public class ManagementSystem
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
-            stmt = con.prepareStatement("SELECT * FROM students where group_id = ? " +
+            stmt = con.prepareStatement("SELECT student_id, firstName, patronymic, surName, dateOfBirth, sex, group_id, educationYear FROM students where group_id = ? " +
                     "AND educationYear = ? ORDER BY surName, firstName, patronymic");
             stmt.setInt(1, group.getGroupId());
             stmt.setInt(2, year);

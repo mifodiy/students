@@ -40,11 +40,11 @@ public class StudentTableModel extends AbstractTableModel
 
             switch (columnIndex){
                 case 0:
-                    return st.getPatronymic();
+                    return st.getSurName();
                 case 1:
                     return st.getFirstName();
                 case 2:
-                    return st.getSurName();
+                    return st.getPatronymic();
                 case 3:
                     return DateFormat.getDateInstance(DateFormat.SHORT).format(st.getDateOfBirth());
             }

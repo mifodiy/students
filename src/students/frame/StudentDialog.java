@@ -124,9 +124,12 @@ public class StudentDialog extends JDialog implements ActionListener
 
     public void setStudent(Student st){
         studentId = st.getStudentId();
-        firstName.setText(st.getFirstName());
-        surName.setText(st.getSurName());
         patronymic.setText(st.getPatronymic());
+        System.out.println(st.getPatronymic());
+        surName.setText(st.getSurName());
+        System.out.println(st.getSurName());
+        firstName.setText(st.getFirstName());
+        System.out.println(st.getFirstName());
         dateOfBirth.getModel().setValue(st.getDateOfBirth());
         for (Enumeration e = sex.getElements(); e.hasMoreElements();){
             AbstractButton ab = (AbstractButton) e.nextElement();
@@ -145,9 +148,9 @@ public class StudentDialog extends JDialog implements ActionListener
     public Student getStudent(){
         Student st = new Student();
         st.setStudentId(studentId);
-        st.setFirstName(firstName.getText());
-        st.setSurName(surName.getText());
         st.setPatronymic(patronymic.getText());
+        st.setSurName(surName.getText());
+        st.setFirstName(firstName.getText());
         Date d = ((SpinnerDateModel) dateOfBirth.getModel()).getDate();
         st.setDateOfBirth(d);
         for (Enumeration e = sex.getElements(); e.hasMoreElements();){

@@ -202,6 +202,7 @@ public class StudentsFrame extends JFrame implements ActionListener, ListSelecti
                         Student s = stm.getStudent(stdList.getSelectedRow());
                         try{
                             StudentDialog std = new StudentDialog(ms.getGroups(), false, StudentsFrame.this);
+                            System.out.println(s.toString());
                             std.setStudent(s);
                             std.setModal(true);
                             std.setVisible(true);
