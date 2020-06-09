@@ -71,9 +71,9 @@ public class StudentDialog extends JDialog implements ActionListener
         l = new JLabel("Пол: ", JLabel.RIGHT);
         l.setBounds(L_X, 70, L_W, 20);
         getContentPane().add(l);
-        m.setBounds(L_X + L_W + 10, 50, C_W/2, 20);
+        m.setBounds(L_X + L_W + 10, 70, C_W/2, 20);
         getContentPane().add(m);
-        w.setBounds(L_X + L_W + 10 + C_W/2, 50, C_W/2, 20);
+        w.setBounds(L_X + L_W + 10 + C_W/2, 70, C_W/2, 20);
         w.setSelected(true);
         getContentPane().add(w);
 

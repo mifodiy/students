@@ -24,11 +24,8 @@ public class Student implements Comparable
     public Student(ResultSet rs) throws SQLException {
         setStudentId(rs.getInt(1));
         setFirstName(rs.getString(2));
-        System.out.println(rs.getString(2));
         setPatronymic(rs.getString(3));
-        System.out.println(rs.getString(3));
         setSurName(rs.getString(4));
-        System.out.println(rs.getString(4));
         setDateOfBirth(rs.getDate(5));
         setSex(rs.getString(6).charAt(0));
         setGroupId(rs.getInt(7));
